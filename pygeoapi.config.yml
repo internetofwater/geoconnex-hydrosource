@@ -33,7 +33,7 @@ server:
     bind:
         host: localhost #change to your hostname if running your own instance
         port: 5000
-    url: https://reference.geoconnex.us #change to host URL  if running your own instance
+    url: http://localhost:5000 #change to host URL  if running your own instance
     mimetype: application/json; charset=UTF-8
     encoding: utf-8
     language: en-US
@@ -45,8 +45,8 @@ server:
         attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>'
     ogc_schemas_location: /opt/schemas.opengis.net
     templates:
-      path: /skin-dashboard/templates
-      static: /skin-dashboard/static
+    #  path: /skin-dashboard/templates
+    #  static: /skin-dashboard/static
 
 logging:
     level: ERROR
@@ -54,12 +54,13 @@ logging:
 
 metadata:
     identification:
-        title: geoconnex reference features
-        description: Provides reference features for geoconnex.us.
+        title: Hydrosource Reference Features
+        description: Provides linked data for hydrologic features across Hydrosource datasets
         keywords:
             - geospatial
             - data
             - api
+            - hydropower
         keywords_type: theme
         terms_of_service: https://creativecommons.org/licenses/by/4.0/
         url: https://github.com/internetofwater/geoconnex.us
@@ -67,46 +68,38 @@ metadata:
         name: CC-BY 4.0 license
         url: https://creativecommons.org/licenses/by/4.0/
     provider:
-        name: Team geoconnex
-        url: https://github.com/internetofwater/geoconnex.us
+        name: Hydrosource
+        url: https://hydrosource.ornl.gov
     contact:
-        address: 2111 Campus Dr
-        city: Durham
-        stateorprovince: North Carolina
-        postalcode: 27708
+        address: 
+        city: 
+        stateorprovince: 
+        postalcode: 
         country: USA
-        email: kyle.onda@duke.edu
-        url: https://internetofwater.org
+        email: debd@ornl.gov
+        url: https://hydrosource.ornl.gov
         role: pointOfContact
 
 resources:
     dams:
         type: collection
-        title: Public Water Systems
-        description: U.S. Public Water Systems
-        geojsonld: false
+        title: Dams
+        description: Dams represented across Hydrosource datasets
         keywords:
-            - Public Water Systems
+            - Dams
         context:
-            - NAME: https://schema.org/name
-            - ST_uri: https://schema.org/geoWithin
-            - SDWIS: https://schema.org/subjectOf
-            - PROVIDER: https://schema.org/isBasedOn
-            - CITY_SERVED_uri: https://schema.org/geoIntersects
+            - "schema:Place": http://opengeospatial/def/ontology/hyf/HydroLocation
             - schema: https://schema.org/
-              NAME: schema:name
-              SDWIS: 
-                  "@id": schema:subjectOf
-                  "@type": "@id"
-              PROVIDER: 
-                  "@id": schema:isBasedOn
-                  "@type": "@id"
-              ST_uri: 
+              dam_name: schema:name
+              state_uri: 
                   "@id": schema:geoWithin
                   "@type": "@id"
-              CITY_SERVED_uri: 
-                  "@id": schema:geoIntersects
+              huc_uri: 
+                  "@id": schema:geoWithin
                   "@type": "@id"
+              eha_ptid: 
+                  "@id": schema:identifier
+                  "@type": "PropertyValue"
         links: 
             - type: application/html
               rel: canonical
@@ -122,8 +115,10 @@ resources:
                 end: null
         providers:
             - type: feature
-              name: SQLiteGPKG
-              data: /data/pws.gpkg
-              id_field: PWSID
-              table: pws
+              name: CSV
+              data: /data/dams.csv
+              id_field: hydrosource_id
               uri_field: uri
+              geometry:
+                  x_field: longitude
+                  y_field: latitude
