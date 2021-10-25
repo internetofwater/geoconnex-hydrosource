@@ -1,0 +1,17 @@
+#dont need this anymore, but useful for test deployment
+version: '3'
+
+services:
+  info-geoconnex-us:
+    image: internetofwater/pygeoapi-geoconnex:latest
+    user: root
+    ports:
+      - "5000:80"
+    restart: always
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/.docker/config.json:/config.json
+    command: --interval 30 --cleanup
+    restart: always
