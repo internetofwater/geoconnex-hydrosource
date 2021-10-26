@@ -12,3 +12,5 @@ git clone https://github.com/internetofwater/geoconnex-hydrosource
 ```
 docker-compose up -d --build
 ```
+
+pygeoapi is running at port 5000. Modify docker-compose as apprioriate to expose different port and/or reverse proxy in front to direct public http(s) traffic to server listening at port 5000 behind firewall.
