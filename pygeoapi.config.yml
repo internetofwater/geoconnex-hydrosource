@@ -43,8 +43,8 @@ server:
     map:
         url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
         attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>'
-    ogc_schemas_location: /opt/schemas.opengis.net
-    templates:
+    ogc_schemas_location: /schemas.opengis.net
+    # templates:
     #  path: /skin-dashboard/templates
     #  static: /skin-dashboard/static
 
@@ -96,14 +96,21 @@ resources:
               huc_uri: 
                   "@id": schema:geoWithin
                   "@type": "@id"
-              eha_ptid: 
-                  "@id": schema:identifier
-                  "@type": "PropertyValue"
+              id_eha: schema:identifier
+              id_hilarri: schema:identifier
+              id_fcdocket: schema:identifier
+              id_nid: schema:identifier
+              hyf_type:
+                  "@id": http://www.opengeospatial.org/standards/waterml2/hy_features/HY_HydroLocationType
+                  "@type": "@id"
+              hyf:
+                  "@id": "@type"
+                  "@type": "@id"
         links: 
             - type: application/html
               rel: canonical
               title: EPA PWSID List source
-              href: https://echo.epa.gov/tools/data-downloads/sdwa-download-summary
+              href: https://hydrosource.ornl.gov
               hreflang: en-US
         extents:
             spatial:
@@ -114,10 +121,7 @@ resources:
                 end: null
         providers:
             - type: feature
-              name: CSV
-              data: /data/dams.csv
+              name: GeoJSON
+              data: /data/dams.geojson
               id_field: hydrosource_id
               uri_field: uri
-              geometry:
-                  x_field: longitude
-                  y_field: latitude
