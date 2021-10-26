@@ -22,6 +22,7 @@ d$hydrosource_id <- 1:nrow(d)
 d$uri <- paste0("https://geoconnex.us/ornl/hydrosource/dams/",
                 d$hydrosource_id)
 
+d$dam_nam <- gsub('"',"",d$dam_name)
 ######################################################
 ## 3. Reference other geoconnex resources
 ######################################################
