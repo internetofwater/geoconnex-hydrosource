@@ -3,6 +3,7 @@ library(jsonlite)
 library(tidyverse)
 library(purrr)
 library(geojsonio)
+library(geojsonsf)
 #####################################################
 ## 1. read in the file
 #####################################################
@@ -154,4 +155,16 @@ g <- cbind(g,id_eha,id_hilarri,id_fcdocket,id_nid)
 # 5.1 add final geoconnex types
 g$hyf = "http://www.opengeospatial.org/standards/waterml2/hy_features/HY_HydroLocation"
 g$hyf_type = "http://www.opengeospatial.org/standards/waterml2/hy_features/dam"
-geojson_write(g,file="dams.geojson")
+g$dam_name <- gsub("\"","'",g$dam_name)
+# write file
+test <- g[1,]
+geojson_write(test,file="test.geojson")
+
+x <- readLines("test.geojson")
+x <- gsub('["','',x,fixed=TRUE)
+x <- gsub('"]','',x,fixed=TRUE)
+x <- gsub('\\','',x,fixed=TRUE)
+
+# clean internal quotes and brackets "[ ]"
+
+writeLines(x, con="test2.geojson")
