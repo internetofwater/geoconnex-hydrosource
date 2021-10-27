@@ -157,14 +157,34 @@ g$hyf = "http://www.opengeospatial.org/standards/waterml2/hy_features/HY_HydroLo
 g$hyf_type = "http://www.opengeospatial.org/standards/waterml2/hy_features/dam"
 g$dam_name <- gsub("\"","'",g$dam_name)
 # write file
-test <- g[1,]
-geojson_write(test,file="test.geojson")
+#test <- g[573,]
+#geojson_write(test,file="test.geojson")
 
-x <- readLines("test.geojson")
+geojson_write(g,file="dams.geojson")
+
+x <- readLines("dams.geojson")
 x <- gsub('["','',x,fixed=TRUE)
 x <- gsub('"]','',x,fixed=TRUE)
 x <- gsub('\\','',x,fixed=TRUE)
 
 # clean internal quotes and brackets "[ ]"
+unlink("dams.geojson")
+writeLines(x, con="dams.geojson")
 
-writeLines(x, con="test2.geojson")
+
+
+#############################################################
+# 6 Make PIDS
+###########################################################
+
+
+pids <- select(d,uri,hydrosource_id)
+pids <- pids %>% 
+  mutate(id = uri,
+         target = paste0("http://localhost:5000/collections/dams/items/",hydrosource_id),
+         creator = "email address",
+         description = "dam in ORNL Hydrosource datasets"
+         ) %>% 
+  select(id, target, creator, description)
+
+write_csv(pids,"dams_pids.csv", append=FALSE)
