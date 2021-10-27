@@ -3,7 +3,7 @@
 1. Clone repository
 ```
 git clone https://github.com/internetofwater/geoconnex-hydrosource
-cd pygeoapi.config.yml
+cd pygeoapi
 ```
 
 2. Change `url` in line 36 of `pygeoapi.config.yml` to desired host address
