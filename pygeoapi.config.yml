@@ -91,23 +91,27 @@ resources:
             - schema: https://schema.org/
               dam_name: schema:name
               state_uri: 
-                  "@id": schema:geoWithin
+                  "@id": "schema:geoWithin"
                   "@type": "@id"
               huc_uri: 
-                  "@id": schema:geoWithin
+                  "@id": "schema:geoWithin"
                   "@type": "@id"
               id_eha: schema:identifier
               id_hilarri: schema:identifier
               id_fcdocket: schema:identifier
               id_nid: schema:identifier
               hyf_type:
-                  "@id": http://www.opengeospatial.org/standards/waterml2/hy_features/HY_HydroLocationType
+                  "@id": "http://www.opengeospatial.org/standards/waterml2/hy_features/HY_HydroLocationType"
                   "@type": "@id"
               hyf:
                   "@id": "@type"
                   "@type": "@id"
-              huc12_uri: schema:geoWithin
-              comid_uri: http://www.opengeospatial.org/standards/waterml2/hy_features/flowpath
+              huc12_uri:
+                   "@id": "schema:geoWithin"
+                   "@type": "@id"
+              comid_uri: 
+                   "@id": "http://www.opengeospatial.org/standards/waterml2/hy_features/flowpath"
+                   "@type": "@id"
               HILARRI_2021:
                    "@id": "schema:subjectOf"
                    "@type": "@id"
