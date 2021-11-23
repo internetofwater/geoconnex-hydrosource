@@ -33,8 +33,7 @@ server:
     bind:
         host: localhost #change to your hostname if running your own instance
         port: 5000
-    url: http://localhost:5000 #change to host URL  if running your own instance
-    mimetype: application/json; charset=UTF-8
+    url: https://hydrosource-scqyc36enq-uc.a.run.app #change to your own URL
     encoding: utf-8
     language: en-US
     cors: true
