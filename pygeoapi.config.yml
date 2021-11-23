@@ -48,9 +48,9 @@ server:
     #  path: /skin-dashboard/templates
     #  static: /skin-dashboard/static
 
-#logging:
-#    level: ERROR
-#    logfile: /tmp/pygeoapi.log
+logging:
+    level: ERROR
+    # logfile: /tmp/pygeoapi.log
 
 metadata:
     identification:
