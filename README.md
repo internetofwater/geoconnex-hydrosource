@@ -22,7 +22,7 @@ pygeoapi is running at port 5000. Modify docker-compose as apprioriate to expose
 
 # Outstanding items
 
-1. Decide domain for hydrosource pygeoapi e.g. https://features.hydrosource.ornl.gov
+1. Decide domain for hydrosource pygeoapi e.g. https://features.hydrosource.ornl.gov and configure in pygeoapi.config.yml
 2. Decide what particular cross-dataset collections should be published. THe current one is some kind of combination of powerplants and dams. Perhaps there should be powerplants, dams, lakes, and stream reaches
 3. Decide on `hydrosource_id` scheme to implement for each collection across Hydrosource datasets
 4. Decide on `uri` geoconnex identifier scheme for each collection eg https://geoconnex.us/ornl/hydrosource/dams/<hydrosouce_id>
